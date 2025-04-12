@@ -9,6 +9,6 @@ public class DbConnection {
         String jdbcUrl = "jdbc:mysql://localhost:3306/payroll_service";
         String username = "root";
         String password = "admin";
-        return  DriverManager.getConnection(jdbcUrl, username, password) ;
+        return DriverManager.getConnection(jdbcUrl, username, password);
     }
 }

@@ -1,8 +1,9 @@
 package com.bridgelab;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 // singleton class to get instance of db
@@ -31,6 +32,45 @@ public class DbServices {
         }
         return instance;
 
+    }
+
+    private List<EmployeePayroll> mapSetToObject(ResultSet rs) throws SQLException {
+        List<EmployeePayroll> list = new ArrayList<>();
+
+        while (rs.next()) {
+            System.out.println(rs.getString("name"));
+            LocalDate date = rs.getDate("start_date").toLocalDate();
+
+            list.add(new EmployeePayroll(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("gender"),
+                    rs.getDouble("salary"), date));
+        }
+        System.out.println(list);
+        return list;
+    }
+
+    public List<EmployeePayroll> getEmployeesByDateRange(String startDate, String endDate) {
+        List<EmployeePayroll> employeeList = new ArrayList<>();
+        String query = "SELECT * FROM employee_payroll WHERE start_date BETWEEN ? AND ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, startDate);
+            pstmt.setString(2, endDate);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            // map the result to employee list
+            employeeList = mapSetToObject(rs);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // or throw custom exception
+        }
+
+        return employeeList;
     }
 
 

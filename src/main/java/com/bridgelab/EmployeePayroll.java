@@ -10,7 +10,7 @@ public class EmployeePayroll {
     private double salary;
     private LocalDate date;
 
-    EmployeePayroll(int id, String name, String gender, double salary, LocalDate date){
+    EmployeePayroll(int id, String name, String gender, double salary, LocalDate date) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -36,5 +36,16 @@ public class EmployeePayroll {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeePayroll{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", salary=" + salary +
+                ", date=" + date +
+                '}';
     }
 }
