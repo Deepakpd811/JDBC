@@ -37,4 +37,15 @@ public class EmployeePayroll {
     public LocalDate getDate() {
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "EmployeePayroll{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", salary=" + salary +
+                ", date=" + date +
+                '}';
+    }
 }

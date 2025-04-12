@@ -2,16 +2,17 @@ package com.bridgelab;
 
 public class Main {
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
 
         try {
-
-            DbServices services = new DbServices();
-
+            // set the connection
             DbServices.connection();
 
+            DbServices db = new DbServices();
 
+            // update terisa salary
+            db.updateEmployeeSalary("Terisa",300000);
 
 
 
