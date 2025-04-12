@@ -7,9 +7,9 @@ public class Main {
 
         try {
 
-            DbServices services = new DbServices();
+            DbServices db = DbServices.getInstance();
 
-            DbServices.connection();
+
 
 
 

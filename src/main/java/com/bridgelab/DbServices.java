@@ -4,22 +4,34 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+// singleton class to get instance of db
 public class DbServices {
 
-    public static Connection connection() throws SQLException {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/payroll_service";
-        String username = "root";
-        String password = "admin";
-        return  DriverManager.getConnection(jdbcUrl, username, password) ;
+    // instance of db
+    private static DbServices instance;
+    private Connection conn;
+
+    // constructor
+    private DbServices() {
+        try {
+            conn = DbConnection.connection();
+            System.out.println("Db connected:");
+
+        } catch (Exception e) {
+            System.out.println("Error: occur while connecting database");
+        }
     }
 
-    
+    // public get instance method
+    public static DbServices getInstance() {
 
+        if (instance == null) {
+            return new DbServices();
+        }
+        return instance;
 
-
-
-
-
+    }
 
 
 }
