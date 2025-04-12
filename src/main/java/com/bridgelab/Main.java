@@ -6,11 +6,14 @@ public class Main {
 
 
         try {
+            // set the connection
+            DbServices.connection();
 
             DbServices services = new DbServices();
 
-            DbServices.connection();
-
+            // update employee salary
+            boolean rowSuccess = services.updateEmployeeSalary("Deepak",150000);
+            System.out.println("Update: successfully " + rowSuccess);
 
 
 
