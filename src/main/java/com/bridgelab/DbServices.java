@@ -6,6 +6,10 @@ import java.sql.SQLException;
 
 public class DbServices {
 
+    public static Connection(){
+
+    }
+
     public static void main(String[] args) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/payroll_service";
         String username = "root";
