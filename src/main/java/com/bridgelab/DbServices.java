@@ -1,8 +1,11 @@
 package com.bridgelab;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 // singleton class to get instance of db
@@ -32,6 +35,25 @@ public class DbServices {
         return instance;
 
     }
+    // map result set to list of employee
+    private List<EmployeePayroll> mapSetToObject(ResultSet rs) throws SQLException {
+        List<EmployeePayroll> list = new ArrayList<>();
 
+        while (rs.next()) {
+            System.out.println(rs.getString("name"));
+            LocalDate date = rs.getDate("start_date").toLocalDate();
+
+            list.add(new EmployeePayroll(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("gender"),
+                    rs.getDouble("salary"), date));
+        }
+        System.out.println(list);
+        return list;
+    }
 
 }
+
+
+
